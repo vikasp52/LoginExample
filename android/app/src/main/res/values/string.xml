@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LoginTest</string>
+    <string name="facebook_app_id">430465200850392</string>
+    <string name="fb_login_protocol_scheme">fb430465200850392</string>
+</resources>
