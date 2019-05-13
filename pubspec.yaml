@@ -28,6 +28,7 @@ dependencies:
   location: ^2.3.5
   google_maps_flutter: ^0.5.11+1
   firebase_messaging: ^5.0.1
+  local_auth: ^0.4.0+1
 
 dev_dependencies:
   flutter_test:

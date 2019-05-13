@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assignment/Util/FaceBookSignInUtil.dart';
+import 'package:local_auth/local_auth.dart';
+import 'package:flutter/services.dart';
+import 'package:local_auth/error_codes.dart' as auth_error;
+
+
 
 import 'HomePage.dart';
 
@@ -17,6 +22,24 @@ class _MyLoginPageState extends State<MyLoginPage> {
 
   bool isLoading = false;
 
+  Future checkFingerprint()async{
+    try {
+      var localAuth = new LocalAuthentication();
+      bool didAuthenticate = await localAuth.authenticateWithBiometrics(
+          localizedReason: 'Please authenticate yourself');
+      
+      if(didAuthenticate){
+        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => MapPage()));
+      }
+      // check didAuthenticate and take action
+    } on PlatformException catch (e) {
+      if (e.code == auth_error.notAvailable) {
+        print("There is some problem in authondication");
+      }
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,12 +54,21 @@ class _MyLoginPageState extends State<MyLoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Click below button to login from facebook',
+              'Click below button to login from facebook or Authondicate your finger print',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
+            
+            MaterialButton(onPressed: checkFingerprint,
+              color: Colors.indigo,
+              child: Text("Fingerprint Login", style: TextStyle(
+                  color: Colors.white,
+                  fontWeight:FontWeight.bold
+              ),),),
+            
             MaterialButton(
                 color: Colors.black,
                 child: Text("Facebook Login", style: TextStyle(

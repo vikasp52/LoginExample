@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
+import 'LoginPage.dart';
+
 class MapPage extends StatefulWidget {
   @override
   State<MapPage> createState() => MapPageState();
@@ -66,6 +68,7 @@ class MapPageState extends State<MapPage> {
           IconButton(
               icon: Icon(Icons.power_settings_new),
               onPressed: () async {
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=> MyLoginPage()));
                 await FaceBookSignInUtil.signOutFromFacebook(context);
               }),
         ],
