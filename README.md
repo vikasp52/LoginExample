@@ -1,4 +1,4 @@
-# flutter_assignment
+# Flutter Fingerprint and map example.
 
 A new Flutter application.
 
